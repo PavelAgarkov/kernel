@@ -1,4 +1,4 @@
-# service-pkg
+# kernel
 
 Набор утилит и мини‑фреймворков для сервисов на Go: аккуратный каркас приложения (graceful shutdown, обработка сигналов, рекавери), лидер‑элекция через Redis, планировщик задач, барьер готовности, обёртки для PostgreSQL и ClickHouse, HTTP (chi) и gRPC серверы с полезными мидлварами, логирование на базе zap, простые утилиты.
 
@@ -42,7 +42,7 @@
 
 ## Установка
 ```bash
-go get github.com/PavelAgarkov/service-pkg@latest
+go get github.com/PavelAgarkov/kernel@latest
 ```
 
 ## Требования
@@ -62,13 +62,13 @@ import (
     "time"
     "net/http"
 
-    apppkg "github.com/PavelAgarkov/service-pkg/application"
-    logtypes "github.com/PavelAgarkov/service-pkg/logger"
-    logger "github.com/PavelAgarkov/service-pkg/logger/zap_engine"
-    "github.com/PavelAgarkov/service-pkg/scheduler"
-    "github.com/PavelAgarkov/service-pkg/server"
-    "github.com/PavelAgarkov/service-pkg/watchdog"
-    "github.com/PavelAgarkov/service-pkg/locker"
+    apppkg "github.com/PavelAgarkov/kernel/application"
+    logtypes "github.com/PavelAgarkov/kernel/logger"
+    logger "github.com/PavelAgarkov/kernel/logger/zap_engine"
+    "github.com/PavelAgarkov/kernel/scheduler"
+    "github.com/PavelAgarkov/kernel/server"
+    "github.com/PavelAgarkov/kernel/watchdog"
+    "github.com/PavelAgarkov/kernel/locker"
 
     "github.com/go-redis/redis/v8"
 )
@@ -239,8 +239,8 @@ shutdown()
 
 ```go
 import (
-  logtypes "github.com/PavelAgarkov/service-pkg/logger"
-  logger   "github.com/PavelAgarkov/service-pkg/logger/zap_engine"
+  logtypes "github.com/PavelAgarkov/kernel/logger"
+  logger   "github.com/PavelAgarkov/kernel/logger/zap_engine"
 )
 logger.WriteInfoLog(ctx, &logtypes.LogEntry{Msg: "hello", Component: "app", Method: "main"})
 ```
